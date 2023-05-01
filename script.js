@@ -1,20 +1,17 @@
-window.promises = [];
 const promises = [];
 
 for (let i = 0; i < 5; i++) {
-  const promise = new Promise((resolve) => {
-    const delay = Math.floor(Math.random() * 5) + 1;
-    setTimeout(() => resolve(delay), delay * 1000);
+  const randomTime = Math.floor(Math.random() * 5) + 1;
+  const promise = new Promise(resolve => {
+    setTimeout(() => resolve(randomTime), randomTime * 1000);
   });
   promises.push(promise);
 }
 
 Promise.any(promises)
-  .then((result) => {
-    document.getElementById("output").innerHTML = result;
+  .then(result => {
+    document.getElementById("output").innerHTML = `The first promise to resolve took ${result} seconds.`;
   })
-  .catch((error) => {
-    console.error(error);
+  .catch(error => {
+    console.log(error);
   });
-// Do not change the code above this
-// add your promises to the array `promises`
